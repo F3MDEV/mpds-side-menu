@@ -19,15 +19,17 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Link from "@material-ui/core/Link";
 import PatientIcon from "@material-ui/icons/AccountCircle";
-// import MenuIcon from "@material-ui/icons/Menu";
+import { BackgroundProperty } from "@material-ui/system/node_modules/csstype/index";
+
+import { PropsFunc } from "@material-ui/styles/withStyles/withStyles";
 
 interface MenuSliderF3MProps {
   /**
-   * empty
+   * Array that has all the information about the section items: link, icon and itemTitle.
    */
   sectionsItems?: Array<{ link: string; icon: string; itemTitle: string }>;
   /**
-   * empty
+   * Array of objects that will build the links inside of the user accordion.
    */
   userLinks?: Array<{
     classNames: string;
@@ -35,38 +37,38 @@ interface MenuSliderF3MProps {
     name: string;
   }>;
   /**
-   * empty
+   * onClick to close the menu.
    */
   onClickCloseIcon?: React.MouseEventHandler<HTMLButtonElement>;
   /**
-   * empty
+   * Name the main link to edit.
    */
   editLinkList?: string;
   /**
-   * empty
+   * onClick of the edit link.
    */
   editLinkListClick?: React.MouseEventHandler<any>;
   /**
-   * empty
+   * Array that has all the info of the links that can be selected.
    */
   listOfLinks?: Array<{ rowKey: any; name: string }>;
   /**
-   * empty
+   * The selection values of the sections links.
    */
   selectedItemList?: boolean;
   /**
-   * empty
+   * The boolean value of the expanded state of the panel list of links.
    */
   expandedPanelListOfLinks?: boolean;
   /**
-   * empty
+   * onChange of the expanded panel list of links
    */
   onChangeExpandedPanelListOfLinks?: (
     event: ChangeEvent<{}>,
     expanded: boolean
   ) => void | undefined;
   /**
-   * empty
+   * Color of the icons in the expanded panels
    */
   expandedIconColor?:
     | "inherit"
@@ -77,283 +79,82 @@ interface MenuSliderF3MProps {
     | "error"
     | undefined;
   /**
-   * empty
+   * * The name of the selected link.
    */
   linkSelectedName?: string;
   /**
-   * empty
+   * Color of the selected link.
+   */
+  selectedLinkColor?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "error"
+    | "initial"
+    | "textPrimary"
+    | "textSecondary"
+    | undefined;
+  /**
+   * onClick of the links.
    */
   onClickLinkList?: React.MouseEventHandler<any>;
   /**
-   * empty
+   * Name of the userName.
    */
   userName?: string;
   /**
-   * empty
+   * Color text of the userName.
+   */
+  userNameColor?: string;
+  /**
+   * Speciality of the user.
    */
   userSpeciality?: string;
   /**
-   * empty
+   * Text color of user speciality.
+   */
+  userSpecialityColor?: string;
+  /**
+   * Text color of the user links.
+   */
+  userLinksColor?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "error"
+    | "initial"
+    | "textPrimary"
+    | "textSecondary"
+    | undefined;
+  /**
+   * Classes of the userImage.
    */
   userImageClasses?: string;
   /**
-   * empty
+   * Boolean value of the image existence.
    */
   hasImage?: boolean;
   /**
-   * empty
+   * User photo path.
    */
   pathUserPhoto?: string;
   /**
-   * defaultPathUserPhoto
+   * Default user photo.
    */
   defaultPathUserPhoto?: any;
+  /**
+   * Background color of the menu
+   */
+  menuColor?: string;
+  /**
+   * Boolean value of the menu state expansion.
+   */
+  isMenuOpenActive?: boolean;
+  /**
+   * Text color of the links.
+   */
+  linksItemsTextColor?: string;
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "&.MuiList-root": {
-      position: "absolute",
-      right: 0,
-      left: 0,
-      top: 120,
-      [theme.breakpoints.up("sm")]: {
-        top: 130,
-      },
-    },
-  },
-  underlineHover: {
-    "&:hover": {
-      textDecoration: "none",
-    },
-  },
-  positionFixed: {
-    position: "fixed",
-  },
-  HeightOneHundred: {
-    height: "100%",
-  },
-  WidthOneHundred: {
-    width: "100%",
-  },
-  PositionFixed: {
-    position: "fixed",
-  },
-  PositionAbsolute: {
-    position: "absolute",
-  },
-  MenuContainer: {
-    zIndex: 2,
-    right: 0,
-    width: "75%",
-    overflowY: "scroll",
-  },
-  Menu: {
-    zIndex: 2,
-    width: "75%",
-    background: "#FCFCFC",
-    position: "fixed",
-    right: 0,
-  },
-  BottomZero: {
-    bottom: 0,
-  },
-  buttonLink: {
-    color: "#",
-    width: 183,
-    textAlign: "left",
-    height: 40,
-    lineHeight: 3,
-  },
-  textUppercase: {
-    textTransform: "uppercase",
-  },
-  myAuto: {
-    marginTop: "auto",
-    marginBottom: "auto",
-  },
-  pl3: {
-    paddingLeft: 10,
-  },
-  FloatRight: {
-    float: "right",
-  },
-  BackgroundSideBar: {
-    background: "#FCFCFC",
-  },
-  HeightController: {
-    [theme.breakpoints.between(0, 350)]: {
-      maxHeight: 510,
-      overflow: "scroll",
-    },
-    [theme.breakpoints.between(351, 400)]: {
-      maxHeight: 580,
-      overflow: "scroll",
-    },
-    [theme.breakpoints.between(401, 600)]: {
-      maxHeight: 650,
-      overflow: "scroll",
-    },
-  },
-  PaperElevation: {
-    boxShadow: "none",
-    background: "unset",
-    //color: mainText,
-    transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-  },
-  DisplayLgNone: {
-    [theme.breakpoints.up("lg")]: {
-      display: "none",
-    },
-  },
-  borderExpandMenu: {
-    borderColor: "#4949492a",
-    borderBottomWidth: 1,
-    borderBottomStyle: "solid",
-  },
-  py3: {
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  py4: {
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-  mx4: {
-    marginRight: 15,
-    marginLeft: 15,
-  },
-  textLeft: {
-    textAlign: "left",
-  },
-  mt4: {
-    marginTop: 15,
-  },
-  mr3: {
-    marginRight: 10,
-  },
-  mtMd4: {
-    [theme.breakpoints.up("md")]: {
-      marginTop: 15,
-    },
-  },
-  mrMd4: {
-    [theme.breakpoints.up("md")]: {
-      marginRight: 15,
-    },
-  },
-
-  pb4: {
-    paddingBottom: 15,
-  },
-
-  pl5: {
-    paddingLeft: 20,
-  },
-
-  mb5: {
-    marginBottom: 20,
-  },
-
-  ml5: {
-    marginLeft: 20,
-  },
-
-  mr4: {
-    marginRight: 15,
-  },
-
-  dBlock: {
-    display: "block",
-  },
-  breakText: {
-    wordBreak: "break-all",
-  },
-  cursorPointer: {
-    cursor: "pointer",
-  },
-  flexColumn: {
-    flexDirection: "column",
-  },
-  institutionItem: {
-    fontSize: 16,
-    //fontfamily: ""Nunito, sans-serif",
-    color: "#494949",
-  },
-  fontWeightBold: {
-    fontWeight: 700,
-  },
-  noPaddingY: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  m0: {
-    margin: 0,
-  },
-  dLgNone: {
-    [theme.breakpoints.up("lg")]: {
-      display: "none",
-    },
-  },
-  mr1: {
-    marginRight: 2.5,
-  },
-  idDropdown: {
-    lineHeight: 1.2,
-    color: "#494949",
-  },
-  fitPhoto: {
-    objectFit: "cover",
-  },
-  borderImageHeader: {
-    borderColor: "#DCDCDC",
-    border: 2,
-  },
-  paddingVerticalNav: {
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: 60,
-    },
-  },
-  centerNavbar: {
-    textAlign: "center",
-    zIndex: 10004,
-  },
-  floatLeft: {
-    float: "left",
-  },
-  dNone: {
-    display: "none",
-  },
-  dLgFlex: {
-    [theme.breakpoints.up("lg")]: {
-      display: "flex",
-    },
-  },
-  flexDirectionColumn: {
-    flexDirection: "column",
-  },
-  dFlex: {
-    display: "flex",
-  },
-  navLinkSize: {
-    width: 60,
-    height: 60,
-    padding: 10,
-    /* "&.selected": {
-      background: map-get($theme-colors, primary-transparent);
-      border-left: 0.3rem solid map-get($theme-colors, primary);
-    } */
-  },
-  eraseMarginY: {
-    "&.Mui-expanded": {
-      marginLeft: 15,
-      marginRight: 15,
-      "&:last-child": {
-        marginBottom: 16,
-      },
-    },
-  },
-}));
 
 let tabs;
 
@@ -503,20 +304,280 @@ const MenuSliderF3M: FunctionComponent<MenuSliderF3MProps> = ({
   onChangeExpandedPanelListOfLinks,
   expandedIconColor = "inherit",
   linkSelectedName = "SelectedLink",
+  selectedLinkColor = "textPrimary",
   onClickLinkList,
   userName = "Jane Doe",
   userSpeciality = "Nurse",
   userImageClasses,
   hasImage = false,
+  menuColor = "#FCFCFC",
   pathUserPhoto = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg/440px-The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg",
   defaultPathUserPhoto = "https://icons-for-free.com/iconfiles/png/512/timer+icon-1320183326214705150.png",
+  isMenuOpenActive = true,
+  linksItemsTextColor = "#494949",
+  userNameColor = "#494949",
+  userSpecialityColor = "#494949",
+  userLinksColor = "textPrimary",
 }) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "&.MuiList-root": {
+        position: "absolute",
+        right: 0,
+        left: 0,
+        top: 120,
+        [theme.breakpoints.up("sm")]: {
+          top: 130,
+        },
+        [theme.breakpoints.between(0, 390)]: {
+          overflow: "scroll",
+          height: 243,
+        },
+        [theme.breakpoints.between(0, 330)]: {
+          overflow: "scroll",
+          height: 155,
+        },
+      },
+    },
+    underlineHover: {
+      "&:hover": {
+        textDecoration: "none",
+      },
+    },
+    positionFixed: {
+      position: "fixed",
+    },
+    HeightOneHundred: {
+      height: "100%",
+    },
+    WidthOneHundred: {
+      width: "100%",
+    },
+    PositionFixed: {
+      position: "fixed",
+    },
+    PositionAbsolute: {
+      position: "absolute",
+    },
+    MenuContainer: {
+      zIndex: 2,
+      right: 0,
+      width: "75%",
+      overflowY: "scroll",
+    },
+    Menu: {
+      zIndex: 2,
+      width: "75%",
+      backgroundColor: menuColor as string,
+      position: "fixed",
+      right: 0,
+    },
+    BottomZero: {
+      bottom: 0,
+    },
+    buttonLink: {
+      color: "#",
+      width: 183,
+      textAlign: "left",
+      height: 40,
+      lineHeight: 3,
+    },
+    textUppercase: {
+      textTransform: "uppercase",
+    },
+    myAuto: {
+      marginTop: "auto",
+      marginBottom: "auto",
+    },
+    pl3: {
+      paddingLeft: 10,
+    },
+    FloatRight: {
+      float: "right",
+    },
+    BackgroundSideBar: {
+      backgroundColor: menuColor as string,
+    },
+    HeightController: {
+      [theme.breakpoints.between(0, 350)]: {
+        maxHeight: 510,
+        overflow: "scroll",
+      },
+      [theme.breakpoints.between(351, 400)]: {
+        maxHeight: 580,
+        overflow: "scroll",
+      },
+      [theme.breakpoints.between(401, 600)]: {
+        maxHeight: 650,
+        overflow: "scroll",
+      },
+    },
+    PaperElevation: {
+      boxShadow: "none",
+      background: "unset",
+      //color: mainText,
+      transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+    },
+    DisplayLgNone: {
+      [theme.breakpoints.up("lg")]: {
+        display: "none",
+      },
+    },
+    borderExpandMenu: {
+      borderColor: "#4949492a",
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+    },
+    py3: {
+      paddingTop: 10,
+      paddingBottom: 10,
+    },
+    py4: {
+      paddingTop: 15,
+      paddingBottom: 15,
+    },
+    mx4: {
+      marginRight: 15,
+      marginLeft: 15,
+    },
+    textLeft: {
+      textAlign: "left",
+    },
+    mt4: {
+      marginTop: 15,
+    },
+    mr3: {
+      marginRight: 10,
+    },
+    mtMd4: {
+      [theme.breakpoints.up("md")]: {
+        marginTop: 15,
+      },
+    },
+    mrMd4: {
+      [theme.breakpoints.up("md")]: {
+        marginRight: 15,
+      },
+    },
+
+    pb4: {
+      paddingBottom: 15,
+    },
+
+    pl5: {
+      paddingLeft: 20,
+    },
+
+    mb5: {
+      marginBottom: 20,
+    },
+
+    ml5: {
+      marginLeft: 20,
+    },
+
+    mr4: {
+      marginRight: 15,
+    },
+
+    dBlock: {
+      display: "block",
+    },
+    breakText: {
+      wordBreak: "break-all",
+    },
+    cursorPointer: {
+      cursor: "pointer",
+    },
+    flexColumn: {
+      flexDirection: "column",
+    },
+    institutionItem: {
+      fontSize: 16,
+      //fontfamily: ""Nunito, sans-serif",
+      color: linksItemsTextColor as string,
+    },
+    fontWeightBold: {
+      fontWeight: 700,
+    },
+    noPaddingY: {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+    m0: {
+      margin: 0,
+    },
+    dLgNone: {
+      [theme.breakpoints.up("lg")]: {
+        display: "none",
+      },
+    },
+    mr1: {
+      marginRight: 2.5,
+    },
+    idDropdown: {
+      lineHeight: 1.2,
+      color: "#494949",
+    },
+    fitPhoto: {
+      objectFit: "cover",
+    },
+    borderImageHeader: {
+      borderColor: "#DCDCDC",
+      border: 2,
+    },
+    paddingVerticalNav: {
+      [theme.breakpoints.up("lg")]: {
+        paddingLeft: 60,
+      },
+    },
+    centerNavbar: {
+      textAlign: "center",
+      zIndex: 10004,
+    },
+    floatLeft: {
+      float: "left",
+    },
+    dNone: {
+      display: "none",
+    },
+    dLgFlex: {
+      [theme.breakpoints.up("lg")]: {
+        display: "flex",
+      },
+    },
+    flexDirectionColumn: {
+      flexDirection: "column",
+    },
+    dFlex: {
+      display: "flex",
+    },
+    navLinkSize: {
+      width: 60,
+      height: 60,
+      padding: 10,
+      /* "&.selected": {
+        background: map-get($theme-colors, primary-transparent);
+        border-left: 0.3rem solid map-get($theme-colors, primary);
+      } */
+    },
+    eraseMarginY: {
+      "&.Mui-expanded": {
+        marginLeft: 15,
+        marginRight: 15,
+        "&:last-child": {
+          marginBottom: 16,
+        },
+      },
+    },
+  }));
+
+  const styleClass = useStyles();
+
   const [
     isMenuOpen,
     // setIsMenuOpen
-  ] = useState(true);
-
-  const styleClass = useStyles();
+  ] = useState(isMenuOpenActive);
 
   // let listOfInstitutions =
   //   JSON.parse(this.props.login.listOfInstitutions) || [];
@@ -578,6 +639,7 @@ const MenuSliderF3M: FunctionComponent<MenuSliderF3MProps> = ({
                         // fontFamily={SecondaryFont}
                         fontWeight={700}
                         fontSize={18}
+                        color={selectedLinkColor}
                         className={`${styleClass.dBlock} ${styleClass.breakText}`}
                       >
                         {linkSelectedName}
@@ -636,6 +698,7 @@ const MenuSliderF3M: FunctionComponent<MenuSliderF3MProps> = ({
                           fontWeight={700}
                           fontSize={18}
                           className={`${styleClass.dBlock}`}
+                          color={userNameColor as string}
                         >
                           {userName}
                         </Box>
@@ -643,6 +706,7 @@ const MenuSliderF3M: FunctionComponent<MenuSliderF3MProps> = ({
                           // fontFamily={SecondaryFont}
                           fontSize={18}
                           className={`${styleClass.idDropdown} ${styleClass.m0}`}
+                          color={userSpecialityColor as string}
                         >
                           {userSpeciality}
                         </Box>
@@ -655,6 +719,7 @@ const MenuSliderF3M: FunctionComponent<MenuSliderF3MProps> = ({
                         <Link
                           className={`${styleClass.underlineHover} ${item.classNames} ${styleClass.institutionItem} ${styleClass.dBlock} ${styleClass.py3} ${styleClass.cursorPointer}`}
                           onClick={item.onClick}
+                          color={userLinksColor}
                         >
                           {item.name}
                         </Link>
