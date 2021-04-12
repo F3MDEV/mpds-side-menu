@@ -74,8 +74,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         </div>
       </td>
       <td>
-        <span>
-        [
+        <span>[
           {
             link: "/",
             icon: (
@@ -170,7 +169,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         </span>
       </td>
     </tr>
-
     <tr>
       <td>
         <span>userLinks</span>
@@ -186,8 +184,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         </div>
       </td>
       <td>
-        <span>
-        [
+        <span>[
           {
             classNames: "",
             onClick: console.log("Click!"),
@@ -238,7 +235,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         <span>"Edit"</span>
       </td>
     </tr>
-
     <tr>
       <td>
         <span>editLinkListClick</span>
@@ -255,8 +251,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         <span>-</span>
       </td>
     </tr>
-
-
     <tr>
       <td>
         <span>listOfLinks</span>
@@ -272,8 +266,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
         </div>
       </td>
       <td>
-        <span>
-          [
+        <span>[
             {
               rowKey: 1,
               name: "Link1",
@@ -289,9 +282,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
           ]
         </span>
       </td>
-
   </tr>
-
   <tr>
     <td>
       <span>selectedItemList</span>
@@ -312,7 +303,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>onChangeExpandedPanelListOfLinks</span>
@@ -336,7 +326,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>expandedIconColor</span>
@@ -359,7 +348,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>linkSelectedName</span>
@@ -382,7 +370,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>selectedLinkColor</span>
@@ -405,7 +392,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>selectedLinkColor</span>
@@ -428,7 +414,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>selectedLinkColor</span>
@@ -439,8 +424,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </div>
       <div>
         <div>
-          <span>
-            "inherit" | "primary" | "secondary" | "error" | "initial" | "textPrimary" | "textSecondary" | undefined;
+          <span>"inherit" | "primary" | "secondary" | "error" | "initial" | "textPrimary" | "textSecondary" | undefined;
           </span>
         </div>
       </div>
@@ -451,7 +435,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>onClickLinkList</span>
@@ -474,7 +457,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userName</span>
@@ -497,7 +479,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userNameColor</span>
@@ -520,7 +501,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userSpeciality</span>
@@ -543,7 +523,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userSpecialityColor</span>
@@ -566,7 +545,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userLinksColor</span>
@@ -589,7 +567,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>userImageClasses</span>
@@ -612,7 +589,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>hasImage</span>
@@ -635,7 +611,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>pathUserPhoto</span>
@@ -658,7 +633,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>defaultPathUserPhoto</span>
@@ -681,7 +655,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>menuColor</span>
@@ -704,7 +677,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>isMenuOpenActive</span>
@@ -727,7 +699,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   <tr>
     <td>
       <span>linksItemsTextColor</span>
@@ -750,7 +721,6 @@ ReactDOM.render(<App />, document.querySelector("#app"));
       </span>
     </td>
   </tr>
-
   </tbody>
 </table>
 <br>
